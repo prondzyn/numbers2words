@@ -1,14 +1,14 @@
-package com.prondzyn.numbers.converter
+package com.prondzyn.numbers.writer
 
 import com.prondzyn.lang.UnknownNumberException
 import spock.lang.Specification
 
-class NumbersToWordsConverterSpec extends Specification {
+class NumbersToWordsWriterSpec extends Specification {
 
   def "say all digits"() {
 
     expect:
-    NumbersToWordsConverter.convert(digit) == word
+    NumbersToWordsWriter.writeUsingWords(digit) == word
 
     where:
     digit | word
@@ -28,7 +28,7 @@ class NumbersToWordsConverterSpec extends Specification {
   def "say numbers from 10 to 19"() {
 
     expect:
-    NumbersToWordsConverter.convert(number) == word
+    NumbersToWordsWriter.writeUsingWords(number) == word
 
     where:
     number | word
@@ -47,7 +47,7 @@ class NumbersToWordsConverterSpec extends Specification {
   def "say tens"() {
 
     expect:
-    NumbersToWordsConverter.convert(number) == word
+    NumbersToWordsWriter.writeUsingWords(number) == word
 
     where:
     number | word
@@ -64,13 +64,13 @@ class NumbersToWordsConverterSpec extends Specification {
 
   def "say -1"() {
     expect:
-    NumbersToWordsConverter.convert(-1) == "minus one"
+    NumbersToWordsWriter.writeUsingWords(-1) == "minus one"
   }
 
   def "say few numbers from 20 to 99"() {
 
     expect:
-    NumbersToWordsConverter.convert(number) == phrase
+    NumbersToWordsWriter.writeUsingWords(number) == phrase
 
     where:
     number | phrase
@@ -87,7 +87,7 @@ class NumbersToWordsConverterSpec extends Specification {
   def "say hundreds"() {
 
     expect:
-    NumbersToWordsConverter.convert(number) == phrase
+    NumbersToWordsWriter.writeUsingWords(number) == phrase
 
     where:
     number  | phrase
@@ -105,7 +105,7 @@ class NumbersToWordsConverterSpec extends Specification {
   def "say few numbers from 100 to 999"() {
 
     expect:
-    NumbersToWordsConverter.convert(number) == phrase
+    NumbersToWordsWriter.writeUsingWords(number) == phrase
 
     where:
     number | phrase
@@ -123,7 +123,7 @@ class NumbersToWordsConverterSpec extends Specification {
   def "say thousands"() {
 
     expect:
-    NumbersToWordsConverter.convert(number) == phrase
+    NumbersToWordsWriter.writeUsingWords(number) == phrase
 
     where:
     number | phrase
@@ -141,7 +141,7 @@ class NumbersToWordsConverterSpec extends Specification {
   def "Group 1 (with 'and') from http://www.eslcafe.com/grammar/saying_large_numbers01.html"() {
 
     expect:
-    NumbersToWordsConverter.convert(number) == phrase
+    NumbersToWordsWriter.writeUsingWords(number) == phrase
 
     where:
     number  | phrase
@@ -153,7 +153,7 @@ class NumbersToWordsConverterSpec extends Specification {
   def "Group 2 (with 'and') from http://www.eslcafe.com/grammar/saying_large_numbers01.html"() {
 
     expect:
-    NumbersToWordsConverter.convert(number) == phrase
+    NumbersToWordsWriter.writeUsingWords(number) == phrase
 
     where:
     number      | phrase
@@ -165,7 +165,7 @@ class NumbersToWordsConverterSpec extends Specification {
   def "Group 3 (with 'and') from http://www.eslcafe.com/grammar/saying_large_numbers01.html"() {
 
     expect:
-    NumbersToWordsConverter.convert(number) == phrase
+    NumbersToWordsWriter.writeUsingWords(number) == phrase
 
     where:
     number          | phrase
@@ -176,18 +176,18 @@ class NumbersToWordsConverterSpec extends Specification {
 
   def "say Integer.MIN_VALUE (-2,147,483,648)"() {
     expect:
-    NumbersToWordsConverter.convert(Integer.MIN_VALUE) == "minus two billion one hundred forty-seven million four hundred eighty-three thousand six hundred and forty-eight"
+    NumbersToWordsWriter.writeUsingWords(Integer.MIN_VALUE) == "minus two billion one hundred forty-seven million four hundred eighty-three thousand six hundred and forty-eight"
   }
 
   def "say Integer.MAX_VALUE (2,147,483,647)"() {
     expect:
-    NumbersToWordsConverter.convert(Integer.MAX_VALUE) == "two billion one hundred forty-seven million four hundred eighty-three thousand six hundred and forty-seven"
+    NumbersToWordsWriter.writeUsingWords(Integer.MAX_VALUE) == "two billion one hundred forty-seven million four hundred eighty-three thousand six hundred and forty-seven"
   }
 
   def "say a fucking large numbers"() {
 
     expect:
-    NumbersToWordsConverter.convert(number) == phrase
+    NumbersToWordsWriter.writeUsingWords(number) == phrase
 
     where:
     number                     | phrase
@@ -199,7 +199,7 @@ class NumbersToWordsConverterSpec extends Specification {
   def "say numbers consist of one and zeros"() {
 
     expect:
-    NumbersToWordsConverter.convert(number) == phrase
+    NumbersToWordsWriter.writeUsingWords(number) == phrase
 
     where:
                    number | phrase
@@ -225,7 +225,7 @@ class NumbersToWordsConverterSpec extends Specification {
   def "say numbers consist of ones"() {
 
     expect:
-    NumbersToWordsConverter.convert(number) == phrase
+    NumbersToWordsWriter.writeUsingWords(number) == phrase
 
     where:
     number | phrase
@@ -241,7 +241,7 @@ class NumbersToWordsConverterSpec extends Specification {
   def "say the largest number you can"() {
 
     expect:
-    NumbersToWordsConverter.convert(THE_LARGEST) ==
+    NumbersToWordsWriter.writeUsingWords(THE_LARGEST) ==
         "nine hundred ninety-nine quadragintillion " +
         "nine hundred ninety-nine noventrigintillion " +
         "nine hundred ninety-nine octotrigintillion " +
@@ -289,7 +289,7 @@ class NumbersToWordsConverterSpec extends Specification {
   def "you cannot say the largest number increased by one"() {
 
     when:
-    NumbersToWordsConverter.convert(THE_LARGEST + 1)
+    NumbersToWordsWriter.writeUsingWords(THE_LARGEST + 1)
 
     then:
     def ex = thrown(UnknownNumberException)
@@ -301,7 +301,7 @@ class NumbersToWordsConverterSpec extends Specification {
   def "say the funny number"() {
 
     expect:
-    NumbersToWordsConverter.convert(FUNNY_NUMBER) ==
+    NumbersToWordsWriter.writeUsingWords(FUNNY_NUMBER) ==
         "one hundred eleven quadragintillion " +
         "two hundred twenty-two noventrigintillion " +
         "three hundred thirty-three octotrigintillion " +

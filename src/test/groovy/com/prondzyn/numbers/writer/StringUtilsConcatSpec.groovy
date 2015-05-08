@@ -1,4 +1,4 @@
-package com.prondzyn.numbers.converter
+package com.prondzyn.numbers.writer
 
 import spock.lang.Specification
 

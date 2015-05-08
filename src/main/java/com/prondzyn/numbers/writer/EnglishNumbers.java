@@ -1,11 +1,11 @@
-package com.prondzyn.numbers.converter;
+package com.prondzyn.numbers.writer;
 
 import com.prondzyn.lang.UnknownNumberException;
 
 import java.math.BigInteger;
 
-import static com.prondzyn.numbers.converter.BigIntegerUtils.*;
-import static com.prondzyn.numbers.converter.StringUtils.*;
+import static com.prondzyn.numbers.writer.BigIntegerUtils.*;
+import static com.prondzyn.numbers.writer.StringUtils.*;
 
 class EnglishNumbers {
 

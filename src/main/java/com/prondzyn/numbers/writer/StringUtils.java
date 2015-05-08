@@ -1,9 +1,9 @@
-package com.prondzyn.numbers.converter;
+package com.prondzyn.numbers.writer;
 
 import java.math.BigInteger;
 import java.util.MissingFormatArgumentException;
 
-import static com.prondzyn.numbers.converter.BigIntegerUtils.gt;
+import static com.prondzyn.numbers.writer.BigIntegerUtils.gt;
 
 class StringUtils {
 
